@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Viva Santarém - descubra lugares, passeios e experiências em Santarém e região.">
+    <title>Viva Santarém | Turismo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">VIVA SANTARÉM</div>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#destinos">Destinos</a>
+        <a href="#roteiros">Roteiros</a>
+        <a href="#perola">Pérola</a>
+    </nav>
+</header>
+
+<main>
+
+<section id="inicio" class="hero">
+    <div class="hero-content">
+        <p class="tag">TURISMO EM SANTARÉM E REGIÃO</p>
+
+        <h1>Descubra Santarém.</h1>
+
+        <p>
+            Encontre praias, passeios, gastronomia, cultura e experiências
+            incríveis em Santarém e região.
+        </p>
+
+        <a href="#destinos" class="botao">Explorar destinos</a>
+    </div>
+</section>
+
+<section id="destinos" class="section">
+    <h2>Explore Santarém</h2>
+    <p class="descricao">
+        Descubra alguns dos principais tipos de experiências disponíveis na região.
+    </p>
+
+    <figure class="foto-alter">
+        <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80" alt="Paisagem de Alter do Chão com rio e natureza em Santarém e região">
+        <figcaption>Alter do Chão — cenário de rio, paisagem e natureza da região</figcaption>
+    </figure>
+
+    <div class="cards">
+
+        <article class="card">
+            <div class="imagem praia"></div>
+            <h3>Praias</h3>
+            <p>Conheça praias e lugares para aproveitar a natureza.</p>
+            <button onclick="mostrarMensagem('Praias')">Ver destinos</button>
+        </article>
+
+        <article class="card">
+            <div class="imagem natureza"></div>
+            <h3>Natureza</h3>
+            <p>Explore trilhas, florestas e experiências de ecoturismo.</p>
+            <button onclick="mostrarMensagem('Natureza')">Explorar</button>
+        </article>
+
+        <article class="card">
+            <div class="imagem cultura"></div>
+            <h3>Cultura</h3>
+            <p>Conheça a história, cultura e tradições da região.</p>
+            <button onclick="mostrarMensagem('Cultura')">Conhecer</button>
+        </article>
+
+        <article class="card">
+            <div class="imagem gastronomia"></div>
+            <h3>Gastronomia</h3>
+            <p>Descubra sabores e pratos da culinária regional.</p>
+            <button onclick="mostrarMensagem('Gastronomia')">Encontrar</button>
+        </article>
+
+    </div>
+</section>
+
+<section id="roteiros" class="roteiros">
+    <div>
+        <p class="tag">PLANEJE SUA EXPERIÊNCIA</p>
+        <h2>Monte seu roteiro</h2>
+        <p>
+            Informe seus interesses e a Pérola poderá ajudar a encontrar
+            opções de passeios para você.
+        </p>
+
+        <button class="botao" onclick="montarRoteiro()">
+            Montar meu roteiro
+        </button>
+    </div>
+</section>
+
+<section id="perola" class="perola">
+    <div class="perola-box">
+
+        <div class="perola-topo">
+            <div class="perola-avatar">P</div>
+
+            <div>
+                <h2>Pérola</h2>
+                <span>Assistente virtual do Viva Santarém</span>
+            </div>
+        </div>
+
+        <p>
+            Olá! Eu sou a Pérola. Posso ajudar você a descobrir
+            Santarém e região.
+        </p>
+
+        <div id="resposta" class="resposta">
+            Escolha uma opção abaixo:
+        </div>
+
+        <div class="perguntas">
+            <button onclick="perguntar('praias')">
+                Quero conhecer praias
+            </button>
+
+            <button onclick="perguntar('roteiro')">
+                Quero montar um roteiro
+            </button>
+
+            <button onclick="perguntar('turismo')">
+                O que posso fazer em Santarém?
+            </button>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <h3>VIVA SANTARÉM</h3>
+    <p>Descubra. Viva. Explore.</p>
+    <p>Projeto acadêmico — Curso Técnico em Informática — 2026</p>
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

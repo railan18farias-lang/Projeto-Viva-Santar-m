@@ -1,0 +1,342 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #173b2b;
+    background: #f7faf8;
+}
+
+header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    background: white;
+    border-bottom: 1px solid #e5ebe7;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    gap: 28px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #173b2b;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #28734b;
+}
+
+.hero {
+    min-height: 580px;
+    display: flex;
+    align-items: center;
+    padding: 80px 7%;
+    background:
+        linear-gradient(90deg, rgba(10,45,31,.85), rgba(10,45,31,.25)),
+        url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1800&q=80")
+        center/cover;
+    color: white;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.tag {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 7vw, 82px);
+    line-height: .95;
+    margin-bottom: 25px;
+}
+
+.hero p:not(.tag) {
+    font-size: 19px;
+    line-height: 1.6;
+    max-width: 570px;
+    margin-bottom: 30px;
+}
+
+.botao {
+    display: inline-block;
+    border: none;
+    background: #ffffff;
+    color: #173b2b;
+    padding: 14px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao:hover {
+    transform: translateY(-2px);
+}
+
+.section {
+    padding: 90px 7%;
+}
+
+.section h2,
+.roteiros h2 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.descricao {
+    color: #617067;
+    margin-bottom: 40px;
+}
+
+.foto-alter {
+    margin: 0 0 40px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(23, 59, 43, 0.12);
+}
+
+.foto-alter img {
+    display: block;
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.foto-alter figcaption {
+    background: #f3f7f4;
+    color: #4a5f55;
+    font-size: 14px;
+    padding: 12px 18px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e3e9e5;
+    border-radius: 14px;
+    overflow: hidden;
+    padding-bottom: 22px;
+}
+
+.card h3,
+.card p,
+.card button {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.card h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 21px;
+}
+
+.card p {
+    color: #68756e;
+    line-height: 1.5;
+    min-height: 48px;
+}
+
+.card button {
+    margin-top: 18px;
+    padding: 10px 15px;
+    border: 1px solid #286847;
+    background: white;
+    color: #286847;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.imagem {
+    height: 190px;
+    background-size: cover;
+    background-position: center;
+}
+
+.praia {
+    background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80");
+}
+
+.natureza {
+    background-image: url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80");
+}
+
+.cultura {
+    background-image: url("https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=900&q=80");
+}
+
+.gastronomia {
+    background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80");
+}
+
+.roteiros {
+    padding: 90px 7%;
+    background: #e9f1ec;
+}
+
+.roteiros p:not(.tag) {
+    max-width: 650px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.roteiros .botao {
+    background: #173b2b;
+    color: white;
+}
+
+.perola {
+    padding: 90px 7%;
+    background: white;
+}
+
+.perola-box {
+    max-width: 800px;
+    margin: auto;
+    padding: 35px;
+    border: 1px solid #dce5df;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.06);
+}
+
+.perola-topo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.perola-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #173b2b;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.perola-topo h2 {
+    margin-bottom: 4px;
+}
+
+.perola-topo span {
+    color: #718078;
+    font-size: 14px;
+}
+
+.perola-box > p {
+    line-height: 1.6;
+}
+
+.resposta {
+    margin: 25px 0;
+    padding: 18px;
+    background: #f0f5f2;
+    border-radius: 10px;
+    line-height: 1.5;
+}
+
+.perguntas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.perguntas button {
+    padding: 11px 15px;
+    border: 1px solid #cbd8d0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+}
+
+.perguntas button:hover {
+    background: #edf4ef;
+}
+
+footer {
+    text-align: center;
+    padding: 45px 20px;
+    background: #173b2b;
+    color: white;
+}
+
+footer p {
+    margin-top: 8px;
+    opacity: .8;
+}
+
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    nav {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 0 5%;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hero {
+        padding: 70px 6%;
+    }
+
+    .section,
+    .roteiros,
+    .perola {
+        padding: 65px 6%;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .perola-box {
+        padding: 25px;
+    }
+}
