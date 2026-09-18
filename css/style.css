@@ -165,11 +165,189 @@ nav a:hover {
 
 .rota-painel {
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+    grid-template-columns: minmax(220px, .65fr) minmax(0, 1.05fr) minmax(280px, .75fr);
     overflow: hidden;
     border-radius: 18px;
     background: white;
     box-shadow: 0 12px 30px rgba(23, 59, 43, .1);
+}
+
+.mapa-ilustrado {
+    position: relative;
+    min-height: 300px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #b9e5eb 0 48%, #d7efad 48%);
+}
+
+.mapa-ilustrado::before,
+.mapa-ilustrado::after {
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+}
+
+.mapa-ilustrado::before {
+    width: 190px;
+    height: 190px;
+    right: -75px;
+    bottom: -65px;
+    border: 24px solid rgba(67, 151, 92, .3);
+}
+
+.mapa-ilustrado::after {
+    width: 120px;
+    height: 55px;
+    left: -36px;
+    bottom: 20px;
+    border-top: 20px solid rgba(255, 255, 255, .45);
+    transform: rotate(-13deg);
+}
+
+.sol-mapa {
+    position: absolute;
+    top: 30px;
+    right: 34px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #f5c763;
+    box-shadow: 0 0 0 9px rgba(245, 199, 99, .22);
+}
+
+.nuvem-mapa {
+    position: absolute;
+    width: 52px;
+    height: 14px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, .75);
+}
+
+.nuvem-mapa::before,
+.nuvem-mapa::after {
+    position: absolute;
+    bottom: 0;
+    content: "";
+    border-radius: 50%;
+    background: inherit;
+}
+
+.nuvem-mapa::before {
+    left: 10px;
+    width: 23px;
+    height: 23px;
+}
+
+.nuvem-mapa::after {
+    right: 7px;
+    width: 17px;
+    height: 17px;
+}
+
+.nuvem-um {
+    top: 50px;
+    left: 26px;
+}
+
+.nuvem-dois {
+    top: 95px;
+    right: 28px;
+    transform: scale(.65);
+}
+
+.rio-mapa {
+    position: absolute;
+    z-index: 1;
+    width: 150%;
+    height: 72px;
+    left: -30px;
+    bottom: 56px;
+    border-radius: 50%;
+    border-top: 16px solid #5da9c2;
+    border-bottom: 12px solid rgba(93, 169, 194, .65);
+    transform: rotate(-15deg);
+}
+
+.arvore-mapa {
+    position: absolute;
+    z-index: 2;
+    color: #28734b;
+    font-family: Georgia, serif;
+    font-size: 58px;
+    line-height: 1;
+    text-shadow: 0 14px 0 #704d2d;
+}
+
+.arvore-um {
+    bottom: 28px;
+    left: 20px;
+}
+
+.arvore-dois {
+    bottom: 16px;
+    right: 26px;
+    font-size: 76px;
+}
+
+.arvore-tres {
+    bottom: 50px;
+    right: 68px;
+    font-size: 44px;
+}
+
+.caminho-mapa {
+    position: absolute;
+    z-index: 3;
+    top: 115px;
+    left: 52px;
+    width: 122px;
+    height: 112px;
+    border-right: 4px dashed #fff;
+    border-bottom: 4px dashed #fff;
+    border-radius: 0 0 48px 0;
+    transform: rotate(11deg);
+}
+
+.pino-mapa {
+    position: absolute;
+    z-index: 4;
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 3px solid white;
+    border-radius: 50% 50% 50% 0;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 4px 9px rgba(0, 0, 0, .18);
+    transform: rotate(-45deg);
+}
+
+.pino-mapa > span {
+    transform: rotate(45deg);
+}
+
+.pino-saida {
+    top: 106px;
+    left: 36px;
+    background: #28734b;
+}
+
+.pino-chegada {
+    right: 39px;
+    bottom: 76px;
+    background: #d75845;
+}
+
+.mapa-ilustrado p {
+    position: absolute;
+    z-index: 4;
+    left: 22px;
+    top: 18px;
+    color: #173b2b;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: .6px;
 }
 
 .rota-paradas {
@@ -689,6 +867,10 @@ footer p {
 
     .rota-painel {
         grid-template-columns: 1fr;
+    }
+
+    .mapa-ilustrado {
+        min-height: 240px;
     }
 
     .eventos-cabecalho {
