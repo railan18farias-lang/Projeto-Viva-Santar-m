@@ -32,3 +32,12 @@ function perguntar(tipo) {
             "Você poderá encontrar praias, natureza, cultura, gastronomia, passeios, hospedagens, eventos e outras experiências turísticas.";
     }
 }
+
+document.getElementById("form-cadastro").addEventListener("submit", function(evento) {
+    evento.preventDefault();
+
+    document.getElementById("mensagem-cadastro").innerText =
+        "Solicitação recebida! A equipe do Viva Santarém entrará em contato para validar o Cadastur.";
+
+    this.reset();
+});

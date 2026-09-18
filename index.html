@@ -17,6 +17,7 @@
         <a href="#inicio">Início</a>
         <a href="#destinos">Destinos</a>
         <a href="#roteiros">Roteiros</a>
+        <a href="#cadastro">Cadastre-se</a>
         <a href="#perola">Pérola</a>
     </nav>
 </header>
@@ -45,8 +46,8 @@
     </p>
 
     <figure class="foto-alter">
-        <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=80" alt="Paisagem de Alter do Chão com rio e natureza em Santarém e região">
-        <figcaption>Alter do Chão — cenário de rio, paisagem e natureza da região</figcaption>
+        <img src="images/praia-de-alter.avif" alt="Praia de Alter do Chão, em Santarém">
+        <figcaption>Praia de Alter do Chão — foto: Zé Rodrigues e Henrique Pimentel, TV Liberal.</figcaption>
     </figure>
 
     <div class="cards">
@@ -80,6 +81,50 @@
         </article>
 
     </div>
+</section>
+
+<section id="cadastro" class="cadastro">
+    <div class="cadastro-intro">
+        <p class="tag">FAÇA PARTE DO VIVA SANTARÉM</p>
+        <h2>Cadastre seu serviço turístico</h2>
+        <p>
+            Guias locais e empresas de transporte credenciados pelo Cadastur podem solicitar inclusão no Viva Santarém.
+        </p>
+    </div>
+
+    <form id="form-cadastro" class="form-cadastro">
+        <div class="campo">
+            <label for="tipo-servico">Tipo de serviço</label>
+            <select id="tipo-servico" name="tipo-servico" required>
+                <option value="">Selecione uma opção</option>
+                <option value="guia">Guia de turismo local</option>
+                <option value="transporte">Transporte turístico</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="nome">Nome ou empresa</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="campo">
+            <label for="cadastur">Número do Cadastur</label>
+            <input id="cadastur" name="cadastur" type="text" inputmode="numeric" required>
+        </div>
+
+        <div class="campo">
+            <label for="contato">WhatsApp ou telefone</label>
+            <input id="contato" name="contato" type="tel" autocomplete="tel" required>
+        </div>
+
+        <div class="campo campo-completo">
+            <label for="email">E-mail para retorno</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+
+        <button class="botao" type="submit">Enviar solicitação</button>
+        <p id="mensagem-cadastro" class="mensagem-cadastro" aria-live="polite"></p>
+    </form>
 </section>
 
 <section id="roteiros" class="roteiros">

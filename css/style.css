@@ -143,6 +143,76 @@ nav a:hover {
     gap: 22px;
 }
 
+.cadastro {
+    padding: 90px 7%;
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    gap: 50px;
+    align-items: start;
+    background: #e9f1ec;
+}
+
+.cadastro h2 {
+    font-size: 38px;
+    margin-bottom: 14px;
+}
+
+.cadastro-intro > p:not(.tag) {
+    max-width: 500px;
+    color: #4a5f55;
+    line-height: 1.6;
+}
+
+.form-cadastro {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    padding: 30px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(23, 59, 43, 0.1);
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.campo-completo,
+.form-cadastro .botao,
+.mensagem-cadastro {
+    grid-column: 1 / -1;
+}
+
+.campo label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #cbd8d0;
+    border-radius: 7px;
+    color: #173b2b;
+    font: inherit;
+}
+
+.form-cadastro .botao {
+    justify-self: start;
+    background: #173b2b;
+    color: white;
+}
+
+.mensagem-cadastro {
+    min-height: 20px;
+    color: #286847;
+    font-size: 14px;
+}
+
 .card {
     background: white;
     border: 1px solid #e3e9e5;
@@ -308,6 +378,10 @@ footer p {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .cadastro {
+        grid-template-columns: 1fr;
+    }
+
     nav {
         gap: 12px;
     }
@@ -328,7 +402,8 @@ footer p {
 
     .section,
     .roteiros,
-    .perola {
+    .perola,
+    .cadastro {
         padding: 65px 6%;
     }
 
@@ -338,5 +413,14 @@ footer p {
 
     .perola-box {
         padding: 25px;
+    }
+
+    .form-cadastro {
+        grid-template-columns: 1fr;
+        padding: 22px;
+    }
+
+    .cadastro h2 {
+        font-size: 32px;
     }
 }
