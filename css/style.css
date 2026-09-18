@@ -180,9 +180,59 @@ nav a:hover {
 }
 
 .evento-destaque {
-    display: flex;
-    gap: 28px;
+    position: relative;
+    min-height: 390px;
+    align-items: flex-end;
+    overflow: hidden;
+    padding: 0;
+    background: #173b2b;
+    color: white;
+}
+
+.evento-imagem {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(8, 34, 25, .92), rgba(8, 34, 25, .25)),
+        linear-gradient(0deg, rgba(8, 34, 25, .72), transparent 60%),
+        url("../images/praia-de-alter.avif") center/cover;
+}
+
+.evento-conteudo {
+    position: relative;
+    z-index: 1;
+    max-width: 660px;
+    padding: 48px 38px 38px;
+}
+
+.selo-evento {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 7px 10px;
+    border-radius: 999px;
     background: #f5c763;
+    color: #173b2b;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.evento-destaque .data-evento {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 1;
+}
+
+.evento-destaque .link-evento {
+    padding: 11px 16px;
+    border: 1px solid rgba(255, 255, 255, .7);
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.evento-destaque .link-evento:hover {
+    background: white;
     color: #173b2b;
 }
 
@@ -191,8 +241,8 @@ nav a:hover {
     align-self: flex-start;
     padding: 12px;
     border-radius: 10px;
-    background: #173b2b;
-    color: white;
+    background: #f5c763;
+    color: #173b2b;
     font-size: 12px;
     font-weight: bold;
     letter-spacing: .7px;
@@ -216,6 +266,11 @@ nav a:hover {
 .enviar-evento h3 {
     margin-bottom: 12px;
     font-size: 28px;
+}
+
+.evento-destaque h3 {
+    font-size: clamp(36px, 5vw, 54px);
+    line-height: 1;
 }
 
 .evento-destaque p:not(.local-evento),
@@ -546,8 +601,15 @@ footer p {
     }
 
     .evento-destaque {
-        flex-direction: column;
-        gap: 18px;
-        padding: 24px;
+        min-height: 480px;
+    }
+
+    .evento-conteudo {
+        padding: 90px 24px 28px;
+    }
+
+    .evento-destaque .data-evento {
+        top: 20px;
+        right: 20px;
     }
 }
