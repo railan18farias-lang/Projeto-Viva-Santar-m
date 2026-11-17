@@ -47,36 +47,42 @@
         Descubra alguns dos principais tipos de experiências disponíveis na região.
     </p>
 
-    <figure class="foto-alter">
-        <img src="images/praia-de-alter.avif" alt="Praia de Alter do Chão, em Santarém">
-        <figcaption>Praia de Alter do Chão — foto: Zé Rodrigues e Henrique Pimentel, TV Liberal.</figcaption>
-    </figure>
+    <div class="galeria-praias">
+        <figure class="foto-alter">
+            <img src="images/praia-de-alter.avif" alt="Praia de Alter do Chão, em Santarém">
+            <figcaption>Praia de Alter do Chão — foto: Zé Rodrigues e Henrique Pimentel, TV Liberal.</figcaption>
+        </figure>
+        <figure class="foto-alter">
+            <img src="images/praia-do-pindobal.jpg" alt="Praia do Pindobal, em Belterra, com guarda-sóis de palha à beira do rio">
+            <figcaption>Praia do Pindobal — Belterra, Pará.</figcaption>
+        </figure>
+    </div>
 
     <div class="cards">
 
         <article class="card">
-            <div class="imagem praia"></div>
+            <div class="imagem praia" role="img" aria-label="Praia do Maguari, com faixa de areia clara entre águas azuis"></div>
             <h3>Praias</h3>
             <p>Conheça praias e lugares para aproveitar a natureza.</p>
             <button onclick="mostrarMensagem('Praias')">Ver destinos</button>
         </article>
 
         <article class="card">
-            <div class="imagem natureza"></div>
+            <div class="imagem natureza" role="img" aria-label="Árvore Samaúma na trilha da comunidade Maguari, na Floresta Nacional do Tapajós"></div>
             <h3>Natureza</h3>
             <p>Explore trilhas, florestas e experiências de ecoturismo.</p>
             <button onclick="mostrarMensagem('Natureza')">Explorar</button>
         </article>
 
         <article class="card">
-            <div class="imagem cultura"></div>
+            <div class="imagem cultura" role="img" aria-label="Fachada do Museu João Fona, em Santarém"></div>
             <h3>Cultura</h3>
             <p>Conheça a história, cultura e tradições da região.</p>
             <button onclick="mostrarMensagem('Cultura')">Conhecer</button>
         </article>
 
         <article class="card">
-            <div class="imagem gastronomia"></div>
+            <div class="imagem gastronomia" role="img" aria-label="Tambaqui assado servido com acompanhamentos regionais"></div>
             <h3>Gastronomia</h3>
             <p>Descubra sabores e pratos da culinária regional.</p>
             <button onclick="mostrarMensagem('Gastronomia')">Encontrar</button>
@@ -85,10 +91,21 @@
     </div>
 </section>
 
+<dialog id="modal-destinos" class="modal-destinos" aria-labelledby="titulo-modal-destinos">
+    <div class="modal-destinos-cabecalho">
+        <div>
+            <p class="tag">VIVA SANTARÉM</p>
+            <h2 id="titulo-modal-destinos">Destinos</h2>
+        </div>
+        <button id="fechar-modal-destinos" class="fechar-modal-destinos" type="button" aria-label="Fechar detalhes">×</button>
+    </div>
+    <div id="conteudo-modal-destinos" class="conteudo-modal-destinos" aria-live="polite"></div>
+</dialog>
+
 <section id="rota-maguari" class="rota-maguari">
     <div class="rota-cabecalho">
         <p class="tag">ROTEIRO EM DESTAQUE</p>
-        <h2>Hotel Açay → Comunidade Maguari</h2>
+        <h2 id="rota-titulo">Hotel Açay → Comunidade Maguari</h2>
         <p>Planeje a visita à Floresta Nacional do Tapajós, em Belterra, com informações para organizar seu dia de ecoturismo.</p>
     </div>
 
@@ -112,7 +129,7 @@
                 <span class="marcador-rota">A</span>
                 <div>
                     <strong>Saída</strong>
-                    <p>Hotel Açay — Av. Cuiabá, 2606, Santarém, PA.</p>
+                    <p id="rota-origem">Hotel Açay — Av. Cuiabá, 2606, Santarém, PA.</p>
                 </div>
             </div>
             <div class="linha-rota" aria-hidden="true"></div>
@@ -120,16 +137,16 @@
                 <span class="marcador-rota destino">B</span>
                 <div>
                     <strong>Destino</strong>
-                    <p>Comunidade Maguari — FLONA do Tapajós, Belterra, PA.</p>
+                    <p id="rota-destino">Comunidade Maguari — FLONA do Tapajós, Belterra, PA.</p>
                 </div>
             </div>
         </div>
 
         <div class="tempo-rota">
-            <span>DE CARRO OU ÔNIBUS</span>
-            <strong>cerca de 1 hora</strong>
-            <p>Tempo de referência saindo de Santarém; trânsito, condições da estrada e paradas podem alterar o percurso.</p>
-            <a class="botao" href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+A%C3%A7ay,+Av.+Cuiab%C3%A1,+2606,+Santar%C3%A9m,+PA&amp;destination=Comunidade+Maguari,+Belterra,+PA&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">Calcular rota no Google Maps</a>
+            <span id="rota-transporte">DE CARRO OU ÔNIBUS</span>
+            <strong id="rota-duracao">cerca de 1 hora</strong>
+            <p id="rota-descricao">Tempo de referência saindo de Santarém; trânsito, condições da estrada e paradas podem alterar o percurso.</p>
+            <a id="rota-mapas" class="botao" href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+A%C3%A7ay,+Av.+Cuiab%C3%A1,+2606,+Santar%C3%A9m,+PA&amp;destination=Comunidade+Maguari,+Belterra,+PA&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">Calcular rota no Google Maps</a>
         </div>
     </div>
 
@@ -170,7 +187,8 @@
         <p>Fique por dentro das celebrações, festivais e programações de Santarém, Belterra e Mojuí dos Campos.</p>
     </div>
 
-    <div class="lista-eventos">
+    <div id="lista-eventos" class="lista-eventos">
+        <div id="eventos-publicados">
         <article class="evento-destaque">
             <div class="evento-imagem" aria-hidden="true"></div>
             <div class="data-evento"><span>17–21</span> SET 2026</div>
@@ -184,11 +202,23 @@
                 <a class="link-evento" href="https://saire.santarem.pa.gov.br/" target="_blank" rel="noopener noreferrer">Ver programação oficial</a>
             </div>
         </article>
+        </div>
 
         <aside class="enviar-evento">
             <h3>Vai acontecer na região?</h3>
-            <p>Em breve, eventos de Santarém, Belterra e Mojuí dos Campos poderão ser enviados para divulgação no Viva Santarém.</p>
-            <p class="aviso-evento">Acompanhe as próximas novidades por aqui.</p>
+            <p>Envie os dados do evento para análise da equipe.</p>
+            <form id="form-evento" class="form-evento">
+                <label for="evento-nome">Nome do evento</label><input id="evento-nome" name="nome" required maxlength="120">
+                <label for="evento-descricao">Descrição</label><textarea id="evento-descricao" name="descricao" rows="3" required maxlength="1000"></textarea>
+                <label for="evento-data">Data</label><input id="evento-data" name="data" type="date">
+                <label for="evento-local">Local</label><input id="evento-local" name="local" required maxlength="160">
+                <label for="evento-cidade">Município</label>
+                <select id="evento-cidade" name="cidade" required><option value="Santarém">Santarém</option><option value="Belterra">Belterra</option><option value="Mojuí dos Campos">Mojuí dos Campos</option></select>
+                <label for="evento-contato">Seu nome</label><input id="evento-contato" name="contato" required maxlength="120">
+                <label for="evento-email">E-mail para retorno</label><input id="evento-email" name="email" type="email" required maxlength="254">
+                <button class="botao" type="submit">Enviar evento</button>
+                <p id="mensagem-evento" aria-live="polite"></p>
+            </form>
         </aside>
     </div>
 </section>
@@ -246,9 +276,27 @@
             opções de passeios para você.
         </p>
 
-        <button class="botao" onclick="montarRoteiro()">
+        <form id="form-roteiro" class="form-cadastro">
+        <div class="campo">
+            <label for="dias-roteiro">Quantos dias?</label>
+            <input id="dias-roteiro" name="dias" type="number" min="1" max="30" value="1" required>
+        </div>
+        <div class="campo">
+            <label for="interesse-roteiro">Interesse</label>
+            <select id="interesse-roteiro" name="interesse" required>
+                <option value="praias">Praias</option><option value="natureza">Natureza</option>
+                <option value="cultura">Cultura</option><option value="gastronomia">Gastronomia</option>
+            </select>
+        </div>
+        <div class="campo campo-completo">
+            <label for="orcamento-roteiro">Orçamento aproximado (R$)</label>
+            <input id="orcamento-roteiro" name="orcamento" type="number" min="0" step="50" placeholder="Opcional">
+        </div>
+        <button class="botao" type="submit">
             Montar meu roteiro
         </button>
+        <p id="mensagem-roteiro" class="mensagem-cadastro" aria-live="polite"></p>
+        </form>
     </div>
 </section>
 
@@ -269,8 +317,8 @@
             Santarém e região.
         </p>
 
-        <div id="resposta" class="resposta">
-            Escolha uma opção abaixo:
+        <div id="conversa-perola" class="conversa-perola" aria-live="polite" aria-relevant="additions text">
+            <p class="mensagem-perola mensagem-assistente">Olá! Sou a Pérola, assistente de IA do Viva Santarém. Pergunte sobre destinos, cultura, gastronomia ou peça uma sugestão de roteiro.</p>
         </div>
 
         <div class="perguntas">
@@ -286,6 +334,13 @@
                 O que posso fazer em Santarém?
             </button>
         </div>
+
+        <form id="form-perola" class="form-perola">
+            <label class="sr-only" for="entrada-perola">Escreva sua pergunta para a Pérola</label>
+            <textarea id="entrada-perola" name="pergunta" rows="2" maxlength="1000" placeholder="Escreva sua pergunta..." required></textarea>
+            <button class="botao" type="submit">Enviar</button>
+        </form>
+        <p id="status-perola" class="status-perola" aria-live="polite"></p>
 
     </div>
 </section>
@@ -303,6 +358,8 @@
     </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
 <script src="js/script.js"></script>
 
 </body>

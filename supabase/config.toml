@@ -1,0 +1,4 @@
+project_id = "vtvxmsdyzkxmaknapmys"
+
+[functions.perola-chat]
+verify_jwt = false

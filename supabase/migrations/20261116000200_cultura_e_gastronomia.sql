@@ -1,0 +1,18 @@
+-- Novas opções culturais e gastronômicas para o catálogo de destinos.
+-- Seed aditivo: não apaga registros e não substitui conteúdo já cadastrado.
+-- Fontes: site oficial da Casa do Saulo e Guia Turístico da Prefeitura de Santarém.
+
+insert into public.destinations (name, category, description, location, image_path, website_url) values
+('Sairé de Alter do Chão', 'cultura', 'Celebração centenária que reúne fé, memória, música, dança e manifestações populares da comunidade.', 'Alter do Chão, Santarém, PA', null, 'https://saireoficial.com.br/'),
+('Museu Dica Frazão', 'cultura', 'Espaço dedicado ao artesanato amazônico, com peças feitas de raízes, fibras e sementes.', 'Rua Wilson Dias da Fonseca, 281 — Centro, Santarém, PA', null, 'https://santarem.pa.gov.br/storage/documents/February2026/bFuTPjDBkOiiLfsytfQ0WWSXUgRgQRj8OCnV6et6.pdf'),
+('Museu de História e Arte Sacra', 'cultura', 'Acervo de peças sacras, objetos e documentos ligados à história religiosa e cultural local.', 'Av. Barão do Rio Branco, 168 — Centro, Santarém, PA', null, 'https://santarem.pa.gov.br/storage/documents/February2026/bFuTPjDBkOiiLfsytfQ0WWSXUgRgQRj8OCnV6et6.pdf'),
+('Centro de Artesanato do Tapajós — Cristo Rei', 'cultura', 'Espaço de valorização do artesanato regional e de produtos de comunidades locais.', 'Av. Barão do Rio Branco, 375 — Centro, Santarém, PA', null, 'https://santarem.pa.gov.br/storage/documents/February2026/bFuTPjDBkOiiLfsytfQ0WWSXUgRgQRj8OCnV6et6.pdf'),
+('Círio de Nossa Senhora da Conceição', 'cultura', 'Procissão e manifestação de fé que integra as tradições religiosas e culturais de Santarém.', 'Santarém, PA', null, 'https://santarem.pa.gov.br/storage/documents/February2026/bFuTPjDBkOiiLfsytfQ0WWSXUgRgQRj8OCnV6et6.pdf'),
+('Casa do Saulo', 'gastronomia', 'Restaurante de culinária tapajônica criado em Santarém pelo chef Saulo Jennings.', 'Santarém, PA', null, 'https://casadosaulo.com.br/'),
+('Restaurantes do Igarapé-Açu', 'gastronomia', 'Passeio de canoa até restaurantes à beira do rio, como Restaurante da Tica, do Jacaré e Pôr do Sol.', 'Igarapé-Açu, em frente a Santarém, PA', null, 'https://santarem.pa.gov.br/storage/documents/February2026/bFuTPjDBkOiiLfsytfQ0WWSXUgRgQRj8OCnV6et6.pdf'),
+('Restaurante da Dona Dulce', 'gastronomia', 'Restaurante próximo ao Canal do Jari, conhecido por pratos regionais, incluindo opções com vitória-régia.', 'Região do Canal do Jari, Santarém, PA', null, 'https://santarem.pa.gov.br/storage/documents/February2026/bFuTPjDBkOiiLfsytfQ0WWSXUgRgQRj8OCnV6et6.pdf'),
+('Mercadão 2000', 'gastronomia', 'Mercado com frutas regionais, peixes, farinha de mandioca, ervas e outros sabores locais.', 'Av. Professor Antônio Carvalho — Aldeia, Santarém, PA', null, 'https://santarem.pa.gov.br/storage/documents/February2026/bFuTPjDBkOiiLfsytfQ0WWSXUgRgQRj8OCnV6et6.pdf'),
+('Festival da Tapioca — Boa Esperança', 'gastronomia', 'Festival gastronômico realizado na Comunidade Boa Esperança.', 'Comunidade Boa Esperança, Santarém, PA', null, 'https://santarem.pa.gov.br/storage/documents/February2026/bFuTPjDBkOiiLfsytfQ0WWSXUgRgQRj8OCnV6et6.pdf'),
+('Festival do Açaí — Santa Luzia', 'gastronomia', 'Celebração gastronômica dedicada ao açaí, realizada na Comunidade Santa Luzia.', 'Comunidade Santa Luzia, Santarém, PA', null, 'https://santarem.pa.gov.br/storage/documents/February2026/bFuTPjDBkOiiLfsytfQ0WWSXUgRgQRj8OCnV6et6.pdf'),
+('Festival do Charutinho — Ponta de Pedras', 'gastronomia', 'Festival que celebra a culinária local na Praia de Ponta de Pedras.', 'Ponta de Pedras, Santarém, PA', null, 'https://santarem.pa.gov.br/storage/documents/February2026/bFuTPjDBkOiiLfsytfQ0WWSXUgRgQRj8OCnV6et6.pdf')
+on conflict (name, category) do nothing;
