@@ -295,6 +295,43 @@ async function carregarRota() {
     } catch (e) { console.error("Não foi possível carregar a rota:", e.message); }
 }
 
+function imagemDeSitePermitida(path) {
+    const base = `${(window.VIVA_SUPABASE_URL || "").replace(/\/$/, "")}/storage/v1/object/public/site-images/`;
+    return typeof path === "string" && ((path.startsWith("images/") && !path.includes("..")) || (base !== "/storage/v1/object/public/site-images/" && path.startsWith(base)));
+}
+
+async function carregarConteudoAdministravel() {
+    if (!db) return;
+    try {
+        const { data: settings, error } = await db.from("site_settings").select("setting_key,value");
+        if (error) throw error;
+        const values = Object.fromEntries((settings || []).map(item => [item.setting_key, item.value]));
+        const ids = { hero_title: "site-hero-title", hero_description: "site-hero-description", destinations_heading: "site-destinations-heading", destinations_description: "site-destinations-description", site_tagline: "site-tagline", destinations_praias_description: "site-card-praias", destinations_natureza_description: "site-card-natureza", destinations_cultura_description: "site-card-cultura", destinations_gastronomia_description: "site-card-gastronomia" };
+        Object.entries(ids).forEach(([key, id]) => { if (values[key]) document.getElementById(id).textContent = values[key]; });
+        const contact = [values.contact_email, values.contact_phone].filter(Boolean).join(" · ");
+        if (contact) document.getElementById("site-contact").textContent = contact;
+        if (imagemDeSitePermitida(values.hero_banner)) {
+            const imageUrl = new URL(values.hero_banner, document.baseURI).href;
+            document.querySelector(".hero").style.backgroundImage = `linear-gradient(90deg, rgba(10,45,31,.85), rgba(10,45,31,.25)), url(${JSON.stringify(imageUrl)})`;
+        }
+    } catch (e) { console.error("Não foi possível carregar os textos do site:", e.message); }
+
+    try {
+        const { data, error } = await db.from("gallery_photos").select("title,alt_text,caption,image_path").eq("is_published", true).order("created_at", { ascending: false });
+        if (error) throw error;
+        if (!data?.length) return;
+        const gallery = document.querySelector(".galeria-praias");
+        gallery.replaceChildren();
+        data.forEach(photo => {
+            if (!imagemDeSitePermitida(photo.image_path)) return;
+            const figure = document.createElement("figure"); figure.className = "foto-alter";
+            const image = document.createElement("img"); image.src = new URL(photo.image_path, document.baseURI).href; image.alt = photo.alt_text || photo.title; image.loading = "lazy";
+            const caption = document.createElement("figcaption"); caption.textContent = photo.caption || photo.title;
+            figure.append(image, caption); gallery.append(figure);
+        });
+    } catch (e) { console.error("Não foi possível carregar as fotografias:", e.message); }
+}
+
 document.getElementById("form-cadastro").addEventListener("submit", async function(evento) {
     evento.preventDefault();
     if (!db) { informar("mensagem-cadastro", pedirConfiguracao(), true); return; }
@@ -332,6 +369,7 @@ document.getElementById("form-evento").addEventListener("submit", async function
 
 carregarEventos();
 carregarRota();
+carregarConteudoAdministravel();
 
 // Expõe os manipuladores usados pelos onclicks existentes no HTML.
 window.mostrarMensagem = mostrarMensagem;

@@ -29,10 +29,15 @@
         <button id="logout-button" class="secondary" type="button">Sair</button>
       </header>
       <nav id="tabs" class="tabs" aria-label="Conteúdo do site"></nav>
-      <section class="card editor-card">
-        <div class="editor-heading"><div><h2 id="section-title"></h2><p>Gerencie o que aparece no site e publique quando estiver pronto.</p></div><button id="new-button" type="button">+ Novo registro</button></div>
+      <section id="editor-card" class="card editor-card">
+        <div class="editor-heading"><div><h2 id="section-title"></h2><p>Gerencie o que aparece no site; as alterações são salvas no Supabase e publicadas imediatamente.</p><p>Para editar textos, use chaves como <code>hero_title</code>, <code>hero_description</code>, <code>destinations_praias_description</code>, <code>contact_email</code>, <code>contact_phone</code> ou <code>hero_banner</code>.</p></div><button id="new-button" type="button">+ Novo registro</button></div>
         <p id="list-status" class="status" aria-live="polite"></p>
         <div id="records" class="records"></div>
+      </section>
+      <section id="team-card" class="card editor-card" hidden>
+        <div class="editor-heading"><div><h2>Equipe</h2><p>Convide e ajuste acessos. Somente administradores podem gerenciar a equipe.</p></div></div>
+        <form id="team-form" class="team-form"><label for="team-email">E-mail da equipe</label><input id="team-email" type="email" required><label for="team-role">Função</label><select id="team-role"><option value="developer">Desenvolvedor</option><option value="admin">Administrador</option></select><button type="submit">Convidar ou atualizar</button></form>
+        <p id="team-status" class="status" aria-live="polite"></p><div id="team-records" class="records"></div>
       </section>
       <section id="form-card" class="card form-card" hidden>
         <h2 id="form-title">Novo registro</h2>

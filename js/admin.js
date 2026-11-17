@@ -23,6 +23,13 @@ const sections = {
   assistant_responses: { title: "Respostas auxiliares", singular: "resposta", fields: [
     ["intent", "Assunto", "text", true], ["response", "Resposta", "textarea", true],
     ["is_published", "Publicado no site", "checkbox"]
+  ] },
+  gallery_photos: { title: "Fotografias e banners", singular: "fotografia", fields: [
+    ["title", "Título", "text", true], ["alt_text", "Descrição da imagem", "text", true],
+    ["caption", "Legenda", "textarea"], ["image_path", "Imagem", "image", true], ["is_published", "Publicado no site", "checkbox"]
+  ] },
+  site_settings: { title: "Textos e contato", singular: "informação", idField: "setting_key", fields: [
+    ["setting_key", "Campo (ex.: hero_title, contact_email)", "text", true], ["value", "Texto ou endereço", "textarea", true]
   ] }
 };
 let activeTable = "destinations";
@@ -67,6 +74,7 @@ async function showSession(session) {
     return;
   }
   byId("account-label").textContent = `${session.user.email} · ${data.role === "admin" ? "Administrador" : "Desenvolvedor"}`;
+  window.siteAdminRole = data.role;
   renderTabs();
   await loadRecords();
 }
@@ -82,15 +90,21 @@ function renderTabs() {
     button.addEventListener("click", async () => {
       activeTable = table;
       byId("form-card").hidden = true;
+      byId("team-card").hidden = true;
+      byId("editor-card").hidden = false;
       renderTabs();
       await loadRecords();
     });
     tabs.append(button);
   });
+  const team = document.createElement("button");
+  team.type = "button"; team.textContent = "Equipe"; team.hidden = window.siteAdminRole !== "admin";
+  team.addEventListener("click", async () => { byId("form-card").hidden = true; byId("editor-card").hidden = true; byId("team-card").hidden = false; await loadTeam(); });
+  tabs.append(team);
 }
 
 function labelFor(row) {
-  return row.name || row.title || row.intent || row.slug || "Registro";
+  return row.name || row.title || row.intent || row.slug || row.setting_key || "Registro";
 }
 
 async function loadRecords() {
@@ -98,7 +112,7 @@ async function loadRecords() {
   byId("section-title").textContent = section.title;
   statusText("list-status", "Carregando...");
   byId("records").replaceChildren();
-  const sortField = activeTable === "events" ? "starts_at" : activeTable === "assistant_responses" ? "intent" : "name";
+  const sortField = activeTable === "events" ? "starts_at" : activeTable === "assistant_responses" ? "intent" : activeTable === "site_settings" ? "setting_key" : activeTable === "gallery_photos" ? "title" : "name";
   const { data, error } = await adminDb.from(activeTable).select("*").order(sortField, { ascending: true });
   if (error) {
     statusText("list-status", "Não foi possível carregar. Confira a migration de administração no Supabase.", true);
@@ -114,7 +128,7 @@ async function loadRecords() {
     title.textContent = labelFor(row);
     const state = document.createElement("span");
     state.className = `badge ${row.is_published ? "published" : "draft"}`;
-    state.textContent = row.is_published ? "Publicado" : "Rascunho";
+    state.textContent = row.is_published == null ? "Ativo" : row.is_published ? "Publicado" : "Rascunho";
     text.append(title, state);
     const actions = document.createElement("div");
     actions.className = "record-actions";
@@ -125,6 +139,11 @@ async function loadRecords() {
     remove.type = "button"; remove.className = "danger"; remove.textContent = "Excluir";
     remove.addEventListener("click", () => deleteRecord(row));
     actions.append(edit, remove);
+    if (activeTable === "gallery_photos") {
+      const copy = document.createElement("button"); copy.type = "button"; copy.className = "secondary"; copy.textContent = "Copiar endereço";
+      copy.addEventListener("click", async () => { try { await navigator.clipboard.writeText(row.image_path); statusText("list-status", "Endereço da imagem copiado."); } catch { statusText("list-status", row.image_path); } });
+      actions.append(copy);
+    }
     item.append(text, actions);
     records.append(item);
   });
@@ -153,6 +172,7 @@ function openForm(record = null) {
       });
     } else if (type === "image") {
       input = document.createElement("input"); input.type = "file"; input.accept = "image/jpeg,image/png,image/webp,image/avif";
+      if (required && !record?.[name]) input.required = true;
       const preview = document.createElement("img");
       preview.className = "image-preview";
       preview.alt = "Prévia da foto atual ou selecionada";
@@ -188,9 +208,39 @@ function openForm(record = null) {
 
 async function deleteRecord(record) {
   if (!window.confirm(`Excluir “${labelFor(record)}”?`)) return;
-  const { error } = await adminDb.from(activeTable).delete().eq("id", record.id);
+  const idField = sections[activeTable].idField || "id";
+  const { error } = await adminDb.from(activeTable).delete().eq(idField, record[idField]);
   if (error) statusText("list-status", "Não foi possível excluir este registro.", true);
   else await loadRecords();
+}
+
+async function callTeamApi(body) {
+  const { data: { session } } = await adminDb.auth.getSession();
+  const { data, error } = await adminDb.functions.invoke("admin-team", { body, headers: { Authorization: `Bearer ${session.access_token}` } });
+  if (error) throw error;
+  if (data?.error) throw new Error(data.error);
+  return data;
+}
+
+async function loadTeam() {
+  statusText("team-status", "Carregando equipe...");
+  try {
+    const { members } = await callTeamApi({ action: "list" });
+    const list = byId("team-records"); list.replaceChildren();
+    members.forEach(member => {
+      const row = document.createElement("article"); row.className = "record";
+      const info = document.createElement("div"); const email = document.createElement("strong"); email.textContent = member.email;
+      const role = document.createElement("span"); role.className = "badge published"; role.textContent = member.role;
+      info.append(email, role); row.append(info);
+      const remove = document.createElement("button"); remove.type = "button"; remove.className = "danger"; remove.textContent = "Remover acesso";
+      remove.addEventListener("click", async () => {
+        if (!window.confirm(`Remover o acesso de ${member.email}?`)) return;
+        try { await callTeamApi({ action: "remove", user_id: member.user_id }); await loadTeam(); }
+        catch (e) { statusText("team-status", e.message || "Não foi possível remover o acesso.", true); }
+      }); row.append(remove); list.append(row);
+    });
+    statusText("team-status", `${members.length} pessoa(s) com acesso.`);
+  } catch (e) { statusText("team-status", e.message || "Não foi possível carregar a equipe.", true); }
 }
 
 byId("login-form").addEventListener("submit", async (event) => {
@@ -232,12 +282,19 @@ byId("record-form").addEventListener("submit", async (event) => {
     }
     payload.image_path = adminDb.storage.from("site-images").getPublicUrl(objectPath).data.publicUrl;
   }
+  const idField = sections[activeTable].idField || "id";
   const query = currentRecord
-    ? adminDb.from(activeTable).update(payload).eq("id", currentRecord.id)
+    ? adminDb.from(activeTable).update(payload).eq(idField, currentRecord[idField])
     : adminDb.from(activeTable).insert(payload);
   const { error } = await query;
   if (error) statusText("form-status", "Não foi possível salvar. Confira os campos e as permissões do banco.", true);
   else { byId("form-card").hidden = true; await loadRecords(); }
+});
+
+byId("team-form").addEventListener("submit", async event => {
+  event.preventDefault(); statusText("team-status", "Enviando convite...");
+  try { await callTeamApi({ action: "invite", email: byId("team-email").value.trim(), role: byId("team-role").value }); byId("team-form").reset(); statusText("team-status", "Convite enviado."); await loadTeam(); }
+  catch (e) { statusText("team-status", e.message || "Não foi possível enviar o convite.", true); }
 });
 
 initialize();

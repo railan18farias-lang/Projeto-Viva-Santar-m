@@ -35,6 +35,12 @@ textarea { resize: vertical; }
 .badge.published { color: #17633d; background: #e3f5e9; }
 .badge.draft { color: #765213; background: #fff3d8; }
 .record-actions button { padding: 8px 11px; }
+.team-form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; align-items: end; gap: 10px; }
+.team-form label { grid-row: 1; }
+.team-form input, .team-form select, .team-form button { grid-row: 2; }
+.team-form input { grid-column: 1; }
+.team-form select { grid-column: 2; }
+.team-form button { grid-column: 3; }
 .record-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .field { display: grid; gap: 7px; }
 .image-preview { width: min(100%, 360px); max-height: 220px; object-fit: cover; border-radius: 8px; border: 1px solid #dfe9e2; }
@@ -48,5 +54,7 @@ textarea { resize: vertical; }
   .editor-heading, .record { align-items: flex-start; flex-direction: column; }
   .record-actions { width: 100%; }
   .record-form { grid-template-columns: 1fr; }
+  .team-form { grid-template-columns: 1fr; }
+  .team-form label, .team-form input, .team-form select, .team-form button { grid-column: 1; grid-row: auto; }
   .field:has(textarea), .form-actions { grid-column: auto; }
 }

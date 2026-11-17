@@ -30,11 +30,12 @@
     <div class="hero-content">
         <p class="tag">TURISMO EM SANTARÉM E REGIÃO</p>
 
-        <h1>Descubra Santarém.</h1>
+        <h1 id="site-hero-title">Descubra Santarém.</h1>
 
         <p>
-            Encontre praias, passeios, gastronomia, cultura e experiências
+            <span id="site-hero-description">Encontre praias, passeios, gastronomia, cultura e experiências
             incríveis em Santarém e região.
+            </span>
         </p>
 
         <a href="#destinos" class="botao">Explorar destinos</a>
@@ -42,8 +43,8 @@
 </section>
 
 <section id="destinos" class="section">
-    <h2>Explore Santarém</h2>
-    <p class="descricao">
+    <h2 id="site-destinations-heading">Explore Santarém</h2>
+    <p id="site-destinations-description" class="descricao">
         Descubra alguns dos principais tipos de experiências disponíveis na região.
     </p>
 
@@ -63,28 +64,28 @@
         <article class="card">
             <div class="imagem praia" role="img" aria-label="Praia do Maguari, com faixa de areia clara entre águas azuis"></div>
             <h3>Praias</h3>
-            <p>Conheça praias e lugares para aproveitar a natureza.</p>
+            <p id="site-card-praias">Conheça praias e lugares para aproveitar a natureza.</p>
             <button onclick="mostrarMensagem('Praias')">Ver destinos</button>
         </article>
 
         <article class="card">
             <div class="imagem natureza" role="img" aria-label="Árvore Samaúma na trilha da comunidade Maguari, na Floresta Nacional do Tapajós"></div>
             <h3>Natureza</h3>
-            <p>Explore trilhas, florestas e experiências de ecoturismo.</p>
+            <p id="site-card-natureza">Explore trilhas, florestas e experiências de ecoturismo.</p>
             <button onclick="mostrarMensagem('Natureza')">Explorar</button>
         </article>
 
         <article class="card">
             <div class="imagem cultura" role="img" aria-label="Fachada do Museu João Fona, em Santarém"></div>
             <h3>Cultura</h3>
-            <p>Conheça a história, cultura e tradições da região.</p>
+            <p id="site-card-cultura">Conheça a história, cultura e tradições da região.</p>
             <button onclick="mostrarMensagem('Cultura')">Conhecer</button>
         </article>
 
         <article class="card">
             <div class="imagem gastronomia" role="img" aria-label="Tambaqui assado servido com acompanhamentos regionais"></div>
             <h3>Gastronomia</h3>
-            <p>Descubra sabores e pratos da culinária regional.</p>
+            <p id="site-card-gastronomia">Descubra sabores e pratos da culinária regional.</p>
             <button onclick="mostrarMensagem('Gastronomia')">Encontrar</button>
         </article>
 
@@ -349,7 +350,8 @@
 
 <footer>
     <h3>VIVA SANTARÉM</h3>
-    <p>Descubra. Viva. Explore.</p>
+    <p id="site-tagline">Descubra. Viva. Explore.</p>
+    <p id="site-contact"></p>
     <p>Projeto acadêmico — Curso Técnico em Informática — 2026</p>
     <div class="creditos">
         <p><strong>Desenvolvedores:</strong> Railan, Val, Gilceli, Osiane, Cleidiane, Emanuelle, Kauan, Kedna, Adailla e Vânia.</p>
