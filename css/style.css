@@ -1111,6 +1111,15 @@ footer p {
     color: white;
 }
 
+.link-admin a {
+    display: inline-block;
+    margin-top: 18px;
+    color: #d6eadc;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 @media (max-width: 900px) {
     .cards {
         grid-template-columns: repeat(2, 1fr);
