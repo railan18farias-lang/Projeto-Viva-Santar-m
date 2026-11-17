@@ -5,8 +5,10 @@ O painel fica em `admin.html`. Ele não oferece cadastro público: primeiro crie
 ## Ativar permissões de equipe
 
 1. Execute `migrations/20261116000400_site_staff.sql` no SQL Editor do projeto `santarém-viva`.
-2. Crie sua conta em **Authentication → Users → Add user** e confirme o e-mail, se solicitado.
-3. No SQL Editor, associe seu e-mail ao papel de administrador:
+2. Execute `migrations/20261116000500_site_image_storage.sql` para ativar o envio de fotos.
+3. Execute `migrations/20261117023100_site_editor_policy_performance.sql` para separar as políticas públicas das permissões de edição.
+4. Crie sua conta em **Authentication → Users → Add user** e confirme o e-mail, se solicitado.
+5. No SQL Editor, associe seu e-mail ao papel de administrador:
 
 ```sql
 insert into public.site_staff (user_id, role)
@@ -16,12 +18,12 @@ where lower(email) = lower('SEU_EMAIL_AQUI')
 on conflict (user_id) do update set role = excluded.role;
 ```
 
-4. Para uma conta de desenvolvedor, repita com `'developer'` no lugar de `'admin'`.
-5. Acesse `/admin.html` no endereço publicado do site e entre com o e-mail e a senha criados no Supabase Auth.
+6. Para uma conta de desenvolvedor, repita com `'developer'` no lugar de `'admin'`.
+7. Acesse `/admin.html` no endereço publicado do site e entre com o e-mail e a senha criados no Supabase Auth.
 
 O papel `admin` ou `developer` permite gerenciar destinos, eventos, roteiros e respostas auxiliares. A permissão é verificada no banco via RLS; esconder a tela não é usado como controle de segurança. O painel permite editar conteúdo e excluir registros, então use a ação de exclusão com cuidado.
 
-Para enviar fotos pelo painel, execute também `migrations/20261116000500_site_image_storage.sql`. O formulário de destinos e eventos aceita JPEG, PNG, WebP ou AVIF de até 5 MB. As imagens enviadas ao bucket público `site-images` ficam acessíveis publicamente, pois são fotos destinadas ao site; somente usuários da equipe podem enviar, substituir ou remover arquivos.
+O formulário de destinos e eventos aceita JPEG, PNG, WebP ou AVIF de até 5 MB. As imagens enviadas ao bucket público `site-images` ficam acessíveis publicamente, pois são fotos destinadas ao site; somente usuários da equipe podem enviar, substituir ou remover arquivos.
 
 ## Publicar no GitHub Pages
 
